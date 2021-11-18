@@ -1,0 +1,34 @@
+[
+    {
+        "First_name": "John",
+        "Last_name": "Doe",
+        "Street": "120 jefferson st.",
+        "City": "Riverside",
+        "Country": " NJ",
+        "Code": "8075\n"
+    },
+    {
+        "First_name": "Jack",
+        "Last_name": "McGinnis",
+        "Street": "220 hobo Av.",
+        "City": "Phila",
+        "Country": " PA",
+        "Code": "9119\n"
+    },
+    {
+        "First_name": "\"John \"\"Da Man\"\"\"",
+        "Last_name": "Repici",
+        "Street": "120 Jefferson St.",
+        "City": "Riverside",
+        "Country": " NJ",
+        "Code": "8075\n"
+    },
+    {
+        "First_name": "Stephen",
+        "Last_name": "Tyler",
+        "Street": "\"7452 Terrace \"\"At the Plaza\"\" road\"",
+        "City": "SomeTown",
+        "Country": "SD",
+        "Code": "91234"
+    }
+]

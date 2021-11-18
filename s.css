@@ -1,0 +1,12 @@
+th, td {
+            font:14px Verdana;
+        }
+        table, th, td 
+        {
+            border: 2px solid black ;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        th {
+            font-weight:bold;
+        }
