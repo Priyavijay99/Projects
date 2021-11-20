@@ -12,6 +12,7 @@ fetch('./s.json')
     col.push("Action")
     console.log(col)
      var table = document.createElement("table");
+     table.id = "myTable"
      var tr = table.insertRow();
 
      for (var i = 0; i < col.length; i++) {
@@ -28,18 +29,21 @@ fetch('./s.json')
                 var tabCell = tr.insertCell();
                 // tabCell.innerHTML = "Hello";
                 if (data[i][col[j]]==undefined){
-                    console.log(data[i])
-
+                    
                    // tabCell.innerHTML = "<button>Delete</button>";
                     var btn=document.createElement("Button")
-                    btn.onclick=function(){
-                        console.log("Hello")
-                        
-                        var rem=document.getElementById("row_"+i).remove()
-                        
-                    }
+                    
                     btn.innerHTML="Delete";
+                    btn.id = tr.id
+                    
                     tabCell.appendChild(btn);
+                    btn.onclick=function(e){
+                        rowid = e.target.id
+                        // document.getElementById("myTable").deleteRow(remtr);
+                        var row = document.getElementById(rowid);
+                        row.parentNode.removeChild(row);
+                        // remtr.parentNode.removeChild(remtr);
+                    };
                 }
                 else{
                     tabCell.innerHTML = data[i][col[j]];
@@ -49,4 +53,11 @@ fetch('./s.json')
         var divContainer = document.getElementById("showData");
         divContainer.appendChild(table);
 
-})
+});
+
+// function del_tr(remtr){
+//     console.log("Hello")
+//     console.log("row id", remtr.id)
+//     remtr.parentNode.removeChild(remtr);
+//     return false;
+// }
