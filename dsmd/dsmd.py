@@ -1,6 +1,6 @@
-import json
+
 import pandas as pd
-from flask import Flask, request, url_for, render_template, session, redirect, Response
+from flask import Flask, render_template
 from models.gene import Gene
 
 app = Flask(__name__)
@@ -9,14 +9,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1117@127.0.0.1:3306/dsmd'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'priyanka'
-
-#CONSTANTS
-ADMIN_USER = "admin"
-ADMIN_PASSWORD = "admin"
-USER = "user"
-PASSWORD = "user"
-INVOICE_NO = ""
-
 
 def loadData():
     df = pd.read_json('data.json',typ='series')
@@ -40,8 +32,7 @@ def index():
     return render_template('geneSearch.html', all_gene_dicts=gene_dicts_by_char, tags=gene_list)
 
 @app.route('/home/<char>', methods=['GET','POST'])
-def delete(char):
-    print("char to be shown:", char)
+def home(char):
     genes_by_char =getGeneByChar(char)
     gene_dicts_by_char = [gene.json() for gene in genes_by_char]
     gene_list = [gene.Gene_name for gene in Gene.find_all()]

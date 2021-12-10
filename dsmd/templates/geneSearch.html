@@ -19,7 +19,6 @@
                                     </form>
                                 </div>
                     <div class="panel-body">
-                        {% if char %}
                         <table id="stock_table" class="table table-striped table-bordered nowrap" style="width:100%">
                             <thead>
                                 <tr>
@@ -38,26 +37,6 @@
                                 {% endfor %}
                             </tbody>
                         </table>
-                        {% else %}
-                        <table id="stock_table" class="table table-striped table-bordered nowrap" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>S.No.</th>
-                                    <th>Gene_name</th>
-                                    <th>Transcript_id</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for gene in all_gene_dicts %}
-                                <tr>
-                                    <td>{{ loop.index }}</td>
-                                    <td>{{gene['Gene_name']}}</td>
-                                    <td>{{gene['Transcript_id']}}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                        {% endif %}
                         <div>
                             <form accept="/">
                             <a href="/home/A">A</a>
