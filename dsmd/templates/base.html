@@ -93,7 +93,7 @@
 <script src="{{ url_for('static', filename='js/sb-admin-2.js')}}"></script>
 
 <!-- Autocomplete JS-->
-<script src="{{ url_for('static', filename='js/jquery.autocomplete.js')}}"></script>
+<!-- <script src="{{ url_for('static', filename='js/jquery.autocomplete.js')}}"></script> -->
 
 <!-- Tags Input JS-->
 <script src="{{ url_for('static', filename='js/bootstrap-tagsinput.js')}}"></script>
@@ -113,8 +113,8 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap.min.js"></script>
+<!-- <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap.min.js"></script> -->
 
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
@@ -135,23 +135,17 @@ function gettime(){
 gettime();
 </script>
 <!--script for autocomplete-->
-<!-- <script>
-    $(function() {
-        $.ajax({
-            url: '{{ url_for("autocomplete") }}'
-            }).done(function (data){
-                $('#search_gene').autocomplete({
-                    source: data
-                });
-            });
-        });
-</script> -->
 <script>
-    $( function() {
-      $( "#search_gene" ).autocomplete({
-        source: availableTags
-      });
-    } );
-    </script>
+    var tags = '{{tags|tojson}}';
+    const tagsArray = JSON.parse(tags);
+    $('#search_gene').autocomplete({
+        source: function( request, response ) {
+          var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+          response( $.grep( tagsArray, function( item ){
+              return matcher.test( item );
+          }) );
+      }
+    });
+</script>
 </body>
 </html> 

@@ -5,8 +5,11 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="login-panel panel panel-default" style="margin-top: 10px;">
                     <div class="panel-heading">
+                        <form method="get" action="/home/" onsubmit="this.action = this.action + this.search_gene.value;">
                         <label class="panel-title">Search Gene here:</label>
                         <input type="search" id="search_gene" name="search_gene">
+                        <input type="submit" value="search"/>
+                    </form>
                     </div>
                                 <div class="panel-body" style="text-align: center">
                                     <form method="get" action="/">
@@ -16,6 +19,7 @@
                                     </form>
                                 </div>
                     <div class="panel-body">
+                        {% if char %}
                         <table id="stock_table" class="table table-striped table-bordered nowrap" style="width:100%">
                             <thead>
                                 <tr>
@@ -34,6 +38,26 @@
                                 {% endfor %}
                             </tbody>
                         </table>
+                        {% else %}
+                        <table id="stock_table" class="table table-striped table-bordered nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Gene_name</th>
+                                    <th>Transcript_id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for gene in all_gene_dicts %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{gene['Gene_name']}}</td>
+                                    <td>{{gene['Transcript_id']}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
                         <div>
                             <form accept="/">
                             <a href="/home/A">A</a>
